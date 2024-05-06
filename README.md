@@ -4,7 +4,7 @@ Discover a meticulously crafted Firebase Node.js boilerplate. Designed to fortif
 
 This repository provides a comprehensive Firebase Node.js boilerplate designed to establish secure endpoints, featuring a robust middleware configuration and robust authentication verification mechanisms. Its architecture is tailored to ensure data integrity and user authentication, making it an ideal foundation for developing web applications that prioritize security and reliability.
 
-Middleware Function
+Middleware Function ''functions\src\config\express.config.ts''
 
 ```
 export const authMiddleware = async (req, res: res, next: () => unknown) => {
@@ -31,7 +31,7 @@ export const authMiddleware = async (req, res: res, next: () => unknown) => {
 };
 ```
 
-function for secured endpoint
+function for secured endpoint ''functions\src\config\express.config.ts''
 ```
 export const addSecureEndPoint = (
   method: apiMethod,
@@ -50,7 +50,7 @@ export const addSecureEndPoint = (
 };
 ```
 
-function for unsecured endpoint
+function for unsecured endpoint ''functions\src\config\express.config.ts''
 ```
 export const addUnsecureEndPoint = (
   method: apiMethod,
@@ -69,16 +69,20 @@ export const addUnsecureEndPoint = (
 };
 ```
 
-Gateway function
+Gateway function ''functions\src\config\express.config.ts''
 
 ```
 export const apiGatewayFunc = async (req, res: res) => {
   return apiService(req, res);
 };
-
 ```
 
-example 
+root Request ''functions\src\index.ts''
+```
+exports.synclink = onRequest(apiGatewayFunc);
+```
+
+example ''functions\src\controllers\example.controller.ts''
 
 ```
 const helloWorld = async (request, response: res) => {
