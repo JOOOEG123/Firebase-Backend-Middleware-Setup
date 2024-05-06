@@ -1,5 +1,5 @@
 # Firebase-backend-middleware-setup
-
+https://joooeg123.github.io/Firebase-Backend-Middleware-Setup/
 Discover a meticulously crafted Firebase Node.js boilerplate. Designed to fortify endpoints with middleware and authentication verification, it ensures data integrity and user security for your web applications.
 
 This repository provides a comprehensive Firebase Node.js boilerplate designed to establish secure endpoints, featuring a robust middleware configuration and robust authentication verification mechanisms. Its architecture is tailored to ensure data integrity and user authentication, making it an ideal foundation for developing web applications that prioritize security and reliability.
