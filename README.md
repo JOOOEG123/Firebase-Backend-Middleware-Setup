@@ -31,3 +31,65 @@ export const authMiddleware = async (req, res: res, next: () => unknown) => {
 };
 ```
 
+function for secured endpoint
+```
+export const addSecureEndPoint = (
+  method: apiMethod,
+  path: string,
+  func: (...args) => unknown
+) => {
+  const fullPath = defaultPath + path;
+  try {
+    if (!method) {
+      method = "GET";
+    }
+    apiService[method.toLowerCase()](`/secure/${fullPath}`, authMiddleware, func);
+  } catch (err) {
+    throw new Error(`Unsupported HTTP method: ${method}`);
+  }
+};
+```
+
+function for unsecured endpoint
+```
+export const addUnsecureEndPoint = (
+  method: apiMethod,
+  path: string,
+  func: (...args) => unknown
+) => {
+  const fullPath = defaultPath + path;
+  try {
+    if (!method) {
+      method = "GET";
+    }
+    apiService[method.toLowerCase()](fullPath, func);
+  } catch (err) {
+    throw new Error(`Unsupported HTTP method: ${method}`);
+  }
+};
+```
+
+Gateway function
+
+```
+export const apiGatewayFunc = async (req, res: res) => {
+  return apiService(req, res);
+};
+
+```
+
+example 
+
+```
+const helloWorld = async (request, response: res) => {
+  logger.info("Hello logs!", { structuredData: true });
+  const innerRes = {status: "success", data: { test1: "test6" }};
+  response.send(innerRes);
+  return innerRes;
+};
+
+addUnsecureEndPoint("POST", "helloWorld", helloWorld);
+addSecureEndPoint("POST", "helloWorld", helloWorld);
+```
+
+
